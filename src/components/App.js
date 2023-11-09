@@ -1,22 +1,23 @@
 import React from "react";
-import { directors } from "../data";
+import { Route, Switch } from "react-router-dom";
+import NavBar from "./NavBar";
+import Home from "./Home";
+import Actors from "./Actors";
+import Directors from "./Directors";
+import Movies from "./Movies";
 
-function Directors() {
+function App() {
   return (
     <div>
-      <h1>Directors Page</h1>
-      {directors.map((director) => (
-        <div key={director.name}>
-          <h2>{director.name}</h2>
-          <ul>
-            {director.movies.map((movie) => (
-              <li key={movie}>{movie}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      <NavBar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/movies" component={Movies} />
+        <Route path="/directors" component={Directors} />
+        <Route path="/actors" component={Actors} />
+      </Switch>
     </div>
   );
 }
 
-export default Directors;
+export default App;
